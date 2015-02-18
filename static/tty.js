@@ -16,7 +16,13 @@ var document = this.document
   , h1
   , open
   , lights;
-
+  
+/*
+* Configuration
+*/
+var cfg = {
+  url : null, //'http://wsserver:3000'
+};
 /**
  * Initial Document Title
  */
@@ -58,9 +64,9 @@ tty.open = function() {
       , base = parts.slice(0, parts.length - 1).join('/') + '/'
       , resource = base.substring(1) + 'socket.io';
 
-    tty.socket = io.connect(null, { resource: resource });
+    tty.socket = io.connect(cfg.url, { resource: resource });
   } else {
-    tty.socket = io.connect();
+    tty.socket = io.connect(cfg.url);
   }
 
   tty.windows = [];
